@@ -11,7 +11,7 @@ import {
   Trash,
 } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -41,8 +41,12 @@ export const Navigation = () => {
   const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
-  // const sidebarRef = useRef<ElementRef<"aside">>(null);
-  // const navbarRef = useRef<ElementRef<"div">>(null);
+  // const sidebarRef = useRef<ElementRef<'aside'>>(null);
+  const sidebarRef = useRef<RefObject<'aside'>>(null);
+
+  // const navbarRef = useRef<ElementRef<'div'>>(null);
+  const navbarRef = useRef<RefObject<'div'>>(null);
+
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
