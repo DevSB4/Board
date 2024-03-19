@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 import {
   ChevronsLeft,
   Menu,
@@ -9,27 +9,27 @@ import {
   Search,
   Settings,
   Trash,
-} from "lucide-react";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
+} from 'lucide-react';
+import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from 'usehooks-ts';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
-import UserItem from "./User-Item";
-import { Item } from "./Item";
-import { toast } from "sonner";
-import { DocumentList } from "./Document-List";
+import UserItem from './User-Item';
+import { Item } from './Item';
+import { toast } from 'sonner';
+import { DocumentList } from './Document-List';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import TrashBox from "./Trash-Box";
+} from '@/components/ui/popover';
+import TrashBox from './Trash-Box';
 
-import { useSearch } from "@/hooks/use-search";
-import { useSettings } from "@/hooks/use-settings";
-import { Navbar } from "./Navbar";
+import { useSearch } from '@/hooks/use-search';
+import { useSettings } from '@/hooks/use-settings';
+import { Navbar } from './Navbar';
 
 export const Navigation = () => {
   const router = useRouter();
@@ -37,12 +37,12 @@ export const Navigation = () => {
   const search = useSearch();
   const params = useParams();
   const pathname = usePathname();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
-  const sidebarRef = useRef<ElementRef<"aside">>(null);
-  const navbarRef = useRef<ElementRef<"div">>(null);
+  // const sidebarRef = useRef<ElementRef<"aside">>(null);
+  // const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
 
@@ -67,8 +67,8 @@ export const Navigation = () => {
     event.stopPropagation();
 
     isResizingRef.current = true;
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
   };
 
   const handleMouseMove = (event: MouseEvent) => {
@@ -80,9 +80,9 @@ export const Navigation = () => {
 
     if (sidebarRef.current && navbarRef.current) {
       sidebarRef.current.style.width = `${newWidth}px`;
-      navbarRef.current.style.setProperty("left", `${newWidth}px`);
+      navbarRef.current.style.setProperty('left', `${newWidth}px`);
       navbarRef.current.style.setProperty(
-        "width",
+        'width',
         `calc(100% - ${newWidth}px)`
       );
     }
@@ -90,8 +90,8 @@ export const Navigation = () => {
 
   const handleMouseUp = () => {
     isResizingRef.current = false;
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
   };
 
   const resetWidth = () => {
@@ -99,12 +99,12 @@ export const Navigation = () => {
       setIsCollapsed(false);
       setIsResetting(true);
 
-      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+      sidebarRef.current.style.width = isMobile ? '100%' : '240px';
       navbarRef.current.style.setProperty(
-        "width",
-        isMobile ? "0" : "calc(100% - 240px)"
+        'width',
+        isMobile ? '0' : 'calc(100% - 240px)'
       );
-      navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
+      navbarRef.current.style.setProperty('left', isMobile ? '100%' : '240px');
       setTimeout(() => setIsResetting(false), 300);
     }
   };
@@ -114,22 +114,22 @@ export const Navigation = () => {
       setIsCollapsed(true);
       setIsResetting(true);
 
-      sidebarRef.current.style.width = "0";
-      navbarRef.current.style.setProperty("width", "100%");
-      navbarRef.current.style.setProperty("left", "0");
+      sidebarRef.current.style.width = '0';
+      navbarRef.current.style.setProperty('width', '100%');
+      navbarRef.current.style.setProperty('left', '0');
       setTimeout(() => setIsResetting(false), 300);
     }
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" }).then((documentId) =>
+    const promise = create({ title: 'Untitled' }).then((documentId) =>
       router.push(`/documents/${documentId}`)
     );
 
     toast.promise(promise, {
-      loading: "Creating a new note...",
-      success: "New note created!",
-      error: "Failed to create a new note.",
+      loading: 'Creating a new note...',
+      success: 'New note created!',
+      error: 'Failed to create a new note.',
     });
   };
 
@@ -138,17 +138,17 @@ export const Navigation = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999] dark:bg-[#232323]",
-          isResetting && "transition-all ease-in-out duration-300",
-          isMobile && "w-0"
+          'group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999] dark:bg-[#232323]',
+          isResetting && 'transition-all ease-in-out duration-300',
+          isMobile && 'w-0'
         )}
       >
         <div
           role='button'
           onClick={collapse}
           className={cn(
-            "h-6 w-6 pointer-events-non text-muted-foreground rounded-sm inline-flex select-none items-center gap-1 border bg-muted absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition dark:bg-[#2d2d2d]",
-            isMobile && "opacity-100"
+            'h-6 w-6 pointer-events-non text-muted-foreground rounded-sm inline-flex select-none items-center gap-1 border bg-muted absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition dark:bg-[#2d2d2d]',
+            isMobile && 'opacity-100'
           )}
         >
           <ChevronsLeft className='h-6 w-6' />
@@ -166,7 +166,7 @@ export const Navigation = () => {
             </PopoverTrigger>
             <PopoverContent
               className='p-0 w-72 ml-auto text-muted-foreground/30 dark:bg-neutral-800'
-              side={isMobile ? "bottom" : "right"}
+              side={isMobile ? 'bottom' : 'right'}
             >
               <TrashBox />
             </PopoverContent>
@@ -181,9 +181,9 @@ export const Navigation = () => {
       <div
         ref={navbarRef}
         className={cn(
-          "absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]",
-          isResetting && "transition-all ease-in-out duration-300",
-          isMobile && "left-0 w-full"
+          'absolute top-0 z-[99999] left-60 w-[calc(100%-240px)]',
+          isResetting && 'transition-all ease-in-out duration-300',
+          isMobile && 'left-0 w-full'
         )}
       >
         {!!params.documentId ? (
