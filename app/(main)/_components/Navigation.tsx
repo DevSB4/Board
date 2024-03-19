@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '@/lib/utils';
 import {
   ChevronsLeft,
@@ -42,8 +40,8 @@ export const Navigation = () => {
 
   const isResizingRef = useRef(false);
 
-  const sidebarRef = useRef<RefObject<HTMLDivElement>>(null);
-  const navbarRef = useRef<RefObject<HTMLDivElement>>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
