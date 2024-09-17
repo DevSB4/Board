@@ -10,7 +10,6 @@ The Board project is an application designed to assist with notetaking similar t
 - **User Authentication**: Registered users can log in securely using their credentials, ensuring data privacy and access control.
 
 - #### Backend
-- 
 - **Mongoose**: An Object Data Modeling (ODM) library for MongoDB and Node.js, providing a higher-level abstraction for interacting with the database.
 - **dotenv**: A zero-dependency module that loads environment variables from a `.env` file, allowing for better configuration management.
 
