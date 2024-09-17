@@ -20,7 +20,7 @@ The Board project is an application designed to assist with notetaking similar t
 
 ## Contributing
 
-Contributions to the Ticketing System Project are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Make sure to follow the established coding conventions and guidelines.
+Contributions to the Project are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Make sure to follow the established coding conventions and guidelines.
 
 ## License
 
