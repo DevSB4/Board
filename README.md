@@ -37,10 +37,12 @@ This project is a web application that replicates some of the key functionalitie
 ### Installation
 
 1. Clone the repository:
-git clone [https://github.com/yourusername/notion-clone.git](https://github.com/DevSB4/Board.git)
+```
+git clone https://github.com/yourusername/notion-clone.git
 cd Board
+```
 
-2. Install dependencies:
+3. Install dependencies:
 ```
 npm install
 # or
