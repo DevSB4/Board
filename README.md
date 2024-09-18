@@ -1,4 +1,4 @@
-[nextjs13-board.vercel.app](nextjs13-board.vercel.app)
+[nextjs13-board.vercel.app](https://nextjs13-board.vercel.app/)
 
 ## Project Overview
 
